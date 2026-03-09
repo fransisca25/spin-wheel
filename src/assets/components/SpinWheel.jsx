@@ -23,11 +23,6 @@ export default function SpinWheel() {
     async function spin() {
         if(spinning) return
 
-        // const res = await fetch("/api/spin", {method:"POST"})
-        // const data = await res.json()
-        // const resultIndex = data.resultIndex
-
-
         const resultIndex = weightedRandom(prizes)
         
         setSpinning(true)
