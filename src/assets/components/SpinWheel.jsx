@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { prizes } from "../utils/Prize.js"
+import { prizes, weightedRandom } from "../utils/Prize.js"
 import "../styles/wheel.css"
 
 
@@ -23,10 +23,13 @@ export default function SpinWheel() {
     async function spin() {
         if(spinning) return
 
-        const res = await fetch("http://localhost:5000/api/spin", {method:"POST"})
-        const data = await res.json()
-        const resultIndex = data.resultIndex
+        // const res = await fetch("/api/spin", {method:"POST"})
+        // const data = await res.json()
+        // const resultIndex = data.resultIndex
 
+
+        const resultIndex = weightedRandom(prizes)
+        
         setSpinning(true)
 
         const centerAngle = resultIndex * sliceAngle + sliceAngle / 2
@@ -62,7 +65,7 @@ export default function SpinWheel() {
                             key={i}
                             className="label"
                             style={{
-                                transform:`rotate(${angle}deg) translate(-50%,-180px)`
+                                transform:`rotate(${angle}deg) translate(-50%, clamp(-180px,-40vw,-120px))`
                             }}
                         > {p.name}
                         </div>

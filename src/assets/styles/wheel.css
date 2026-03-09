@@ -25,22 +25,20 @@ body::before{
 
 /* wheel */
 .wheel{
-    width:90vw;
-    max-width:400px;
-    aspect-ratio:1/1;
+    width:min(90vw,420px);
+    height:min(90vw,420px);
 
     border-radius:50%;
     border:12px solid pink;
 
     margin:auto;
-
     position:relative;
 
     transition: transform 5s cubic-bezier(0.33, 1, 0.68, 1);
 
     box-shadow:
-        0 0 25px rgba(255, 255, 255, 0.35),
-        inset 0 0 20px rgba(0, 0, 0, 0.35);
+        0 0 25px rgba(255,255,255,0.35),
+        inset 0 0 20px rgba(0,0,0,0.35);
 }
 
 /* pointer */
@@ -73,11 +71,8 @@ body::before{
 
     transform:translate(-50%,-50%);
 
-    width:22vw;
-    height:22vw;
-
-    max-width:110px;
-    max-height:110px;
+    width:clamp(70px,20vw,110px);
+    height:clamp(70px,20vw,110px);
 
     border-radius:50%;
     border:none;
@@ -115,10 +110,10 @@ body::before{
     font-size:clamp(12px,2.5vw,20px);
     color:white;
 
-    width:60px;
+    width:100px;
     text-align:center;
 
-    text-shadow:0 2px 4px rgba(0,0,0,0.5);
+    pointer-events:none;
 }
 
 
@@ -223,13 +218,15 @@ body::before{
 @media (max-width:500px){
 
     .wheel-container{
-        margin-top:40px;
+        margin-top:30px;
+        padding:10px;
     }
 
     .pointer{
-        border-left:14px solid transparent;
-        border-right:14px solid transparent;
-        border-top:28px solid #8f5e73;
+        border-left:12px solid transparent;
+        border-right:12px solid transparent;
+        border-top:24px solid #8f5e73;
+        top:5px;
     }
 
 }

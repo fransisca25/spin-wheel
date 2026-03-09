@@ -1,4 +1,4 @@
-.social-icons {
+/* .social-icons {
     display:flex;
     justify-content:center;
     gap:40px;
@@ -13,5 +13,26 @@
 }
 
 .icon:hover {
+    transform:scale(1.2);
+} */
+
+.social-icons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+
+    gap:25px;
+    margin-top:40px;
+}
+
+.icon{
+    width:clamp(32px,8vw,42px);
+    height:clamp(32px,8vw,42px);
+
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.icon:hover{
     transform:scale(1.2);
 }
