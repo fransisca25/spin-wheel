@@ -1,5 +1,5 @@
+/* eslint-env node */
 import { createClient } from "@supabase/supabase-js"
-import { process } from "process"
 
 
 const supabase = createClient(
