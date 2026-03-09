@@ -6,10 +6,11 @@ import "../styles/wheel.css"
 export default function SpinWheel() {
     const sliceAngle = 360 / prizes.length;
 
-    const [spinning,setSpinning] = useState(false)
-    const [rotation,setRotation] = useState(-sliceAngle / 2)
-    const [result,setResult] = useState(null)
+    const [spinning, setSpinning] = useState(false)
+    const [rotation, setRotation] = useState(-sliceAngle / 2)
+    const [result, setResult] = useState(null)
     const [showPopup,setShowPopup] = useState(false)
+    const [name, setName] = useState("")
 
     const gradient = prizes.map((p, i)=>{
         const start = i * sliceAngle
@@ -40,6 +41,25 @@ export default function SpinWheel() {
             setResult(prizes[resultIndex].name)
             setShowPopup(true)
         }, 5000)
+    }
+
+    async function submitResult() {
+
+        await fetch("/api/save",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                name:name,
+                prize:result
+            })
+        })
+
+        // Reset name input
+        setName("")
+
+        setShowPopup(false)
     }
 
     return(
@@ -77,10 +97,32 @@ export default function SpinWheel() {
                 <div className="popup">
                     <div className="popup-content">
                         <h2>You got {result}!</h2>
-                        <button onClick={()=>setShowPopup(false)}>OK</button>
+
+                        <input
+                            className="input-name"
+                            type="text"
+                            placeholder="Enter your fullname"
+                            value={name}
+                            onChange={(e)=>setName(e.target.value)}
+                            required
+                        />
+
+                        <div className="popup-actions">
+                            <button onClick={submitResult}>Submit</button>
+                        </div>
                     </div>
                 </div>
             )}
         </div>   
     )
 }
+
+
+// {showPopup && (
+//                 <div className="popup">
+//                     <div className="popup-content">
+//                         <h2>You got {result}!</h2>
+//                         <button onClick={()=>setShowPopup(false)}>OK</button>
+//                     </div>
+//                 </div>
+//             )} 

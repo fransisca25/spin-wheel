@@ -28,13 +28,7 @@ body::before{
 }
 
 /* container */
-/* .wheel-container{
-    text-align:center;
-    margin-top:60px;
-    padding:20px;
-    position:relative;
-} */
- .wheel-container{
+.wheel-container{
     width:100%;
     max-width:100vw;
 
@@ -49,23 +43,7 @@ body::before{
 }
 
 /* wheel */
-/* .wheel{
-    width:min(90vw,420px);
-    height:min(90vw,420px);
-
-    border-radius:50%;
-    border:12px solid pink;
-
-    margin:auto;
-    position:relative;
-
-    transition: transform 5s cubic-bezier(0.33, 1, 0.68, 1);
-
-    box-shadow:
-        0 0 25px rgba(255,255,255,0.35),
-        inset 0 0 20px rgba(0,0,0,0.35);
-} */
- .wheel{
+.wheel{
     width:min(90vw,420px);
     aspect-ratio:1;
 
@@ -82,25 +60,6 @@ body::before{
 }
 
 /* pointer */
-/* .pointer{
-    width:0;
-    height:0;
-
-    border-left:18px solid transparent;
-    border-right:18px solid transparent;
-    border-top:35px solid #8f5e73;
-
-    position:absolute;
-
-    top:10px;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    z-index:10;
-
-    filter: drop-shadow(0 3px 3px rgba(0,0,0,0.3));
-} */
 .pointer{
     border-left:clamp(10px,2vw,18px) solid transparent;
     border-right:clamp(10px,2vw,18px) solid transparent;
@@ -116,7 +75,7 @@ body::before{
 }
 
 /* spin button */
-.spin-button{
+.spin-button {
     position:absolute;
 
     top:50%;
@@ -130,8 +89,7 @@ body::before{
     border-radius:50%;
     border:none;
 
-    background:#8f5e73;
-    color:white;
+    color:#333;
 
     font-size:clamp(14px,2.5vw,18px);
     font-weight:bold;
@@ -140,35 +98,36 @@ body::before{
 
     z-index:20;
 
-    box-shadow:0 4px 10px rgba(0,0,0,0.5);
+    /* silver gradient */
+    background:linear-gradient(
+        145deg,
+        #f5f5f5,
+        #cfcfcf 40%,
+        #ffffff 50%,
+        #bdbdbd 70%,
+        #f5f5f5
+    );
+
+    /* metal shadow */
+    box-shadow:
+        inset 0 2px 6px rgba(255,255,255,0.8),
+        inset 0 -4px 8px rgba(0,0,0,0.25),
+        0 4px 10px rgba(0,0,0,0.5);
 
     transition:0.2s;
 }
 
 .spin-button:hover{
     transform:translate(-50%,-50%) scale(1.05);
-    box-shadow:0 6px 18px rgba(0,0,0,0.4);
+
+    box-shadow:
+        inset 0 2px 10px rgba(255,255,255,1),
+        inset 0 -6px 12px rgba(0,0,0,0.25),
+        0 8px 20px rgba(0,0,0,0.45);
 }
 
 /* label text */
-/* .label{
-    position:absolute;
-
-    top:50%;
-    left:50%;
-
-    transform-origin:0 0;
-
-    font-weight:bold;
-    font-size:clamp(12px,2.5vw,20px);
-    color:white;
-
-    width:100px;
-    text-align:center;
-
-    pointer-events:none;
-} */
- .label{
+.label{
     position:absolute;
     top:50%;
     left:50%;
@@ -184,26 +143,12 @@ body::before{
     text-align:center;
 
     pointer-events:none;
+
+    transform:rotate(${angle}deg) translate(-50%, clamp(-180px,-40vw,-120px))
 }
 
 
 /* popup background */
-/* .popup{
-    position:fixed;
-    inset:0;
-    padding: 20px;
-
-    background:rgba(0,0,0,0.65);
-    backdrop-filter:blur(6px);
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    z-index:100;
-
-    animation: popupFade 0.4s ease;
-} */
 .popup{
     position:fixed;
     inset:0;
@@ -220,23 +165,14 @@ body::before{
     z-index:100;
 }
 
+/* Put button under the insert name box */
+.popup-actions {
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+}
+
 /* popup box */
-/* .popup-content{
-    background:linear-gradient(145deg,#ffffff,#f2f2f2);
-
-    padding:clamp(20px,5vw,45px) clamp(20px,4vw,35px);
-    border-radius:clamp(14px,3vw,20px);
-
-    text-align:center;
-
-    width:min(90vw,340px);
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.35),
-        0 0 20px rgba(255,255,255,0.4) inset;
-
-    animation: popupScale 0.35s ease;
-} */
 .popup-content{
     width:min(90vw,360px);
 
@@ -270,17 +206,19 @@ body::before{
 }
 
 /* popup btn */
- .popup-content button{
-    padding:clamp(10px,2.5vw,14px) clamp(18px,5vw,28px);
+.popup-content button{
+    padding:clamp(8px,2vw,12px) clamp(14px,4vw,22px);
 
     border:none;
     border-radius:30px;
+
+    margin-top: 10px;
 
     background:#8f5e73;
     color:white;
 
     font-weight:bold;
-    font-size:clamp(14px,3vw,16px);
+    font-size:clamp(13px,2.5vw,15px);
 
     cursor:pointer;
 
@@ -292,6 +230,14 @@ body::before{
 .popup-content button:hover{
     transform:translateY(-2px);
     box-shadow:0 8px 20px rgba(0,0,0,0.35);
+}
+
+.input-name{
+    padding:10px 14px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:14px;
+    width:100%;
 }
 
 /* animation */
@@ -332,3 +278,39 @@ body::before{
     }
 
 }
+
+
+/* inspect later */
+/* .spin-button{
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:clamp(70px,20vw,110px);
+    height:clamp(70px,20vw,110px);
+
+    border-radius:50%;
+    border:none;
+
+    background:#8f5e73;
+    color:white;
+
+    font-size:clamp(14px,2.5vw,18px);
+    font-weight:bold;
+
+    cursor:pointer;
+
+    z-index:20;
+
+    box-shadow:0 4px 10px rgba(0,0,0,0.5);
+
+    transition:0.2s;
+} */
+
+/* .spin-button:hover{
+    transform:translate(-50%,-50%) scale(1.05);
+    box-shadow:0 6px 18px rgba(0,0,0,0.4);
+} */
