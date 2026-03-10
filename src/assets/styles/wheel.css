@@ -143,8 +143,6 @@ body::before{
     text-align:center;
 
     pointer-events:none;
-
-    transform:rotate(${angle}deg) translate(-50%, clamp(-180px,-40vw,-120px))
 }
 
 
@@ -278,39 +276,3 @@ body::before{
     }
 
 }
-
-
-/* inspect later */
-/* .spin-button{
-    position:absolute;
-
-    top:50%;
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:clamp(70px,20vw,110px);
-    height:clamp(70px,20vw,110px);
-
-    border-radius:50%;
-    border:none;
-
-    background:#8f5e73;
-    color:white;
-
-    font-size:clamp(14px,2.5vw,18px);
-    font-weight:bold;
-
-    cursor:pointer;
-
-    z-index:20;
-
-    box-shadow:0 4px 10px rgba(0,0,0,0.5);
-
-    transition:0.2s;
-} */
-
-/* .spin-button:hover{
-    transform:translate(-50%,-50%) scale(1.05);
-    box-shadow:0 6px 18px rgba(0,0,0,0.4);
-} */
