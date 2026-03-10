@@ -98,18 +98,26 @@ export default function SpinWheel() {
                     <div className="popup-content">
                         <h2>You got {result}!</h2>
 
-                        <input
-                            className="input-name"
-                            type="text"
-                            placeholder="Enter your fullname"
-                            value={name}
-                            onChange={(e)=>setName(e.target.value)}
-                            required
-                        />
+                        <form 
+                            onSubmit={(e)=> {
+                                e.preventDefault()
+                                submitResult()
+                            }}
+                        >
+                            <input
+                                className="input-name"
+                                type="text"
+                                placeholder="Enter your fullname"
+                                value={name}
+                                onChange={(e)=>setName(e.target.value)}
+                                required
+                            />
 
-                        <div className="popup-actions">
-                            <button onClick={submitResult}>Submit</button>
-                        </div>
+                            <div className="popup-actions">
+                                <button>Submit</button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             )}
